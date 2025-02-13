@@ -3,7 +3,7 @@ from tkinter import Canvas, Entry, OptionMenu, StringVar, messagebox
 from PIL import Image, ImageTk
 from GUI.helper import blur_image
 from GUI.helper import create_rounded_rectangle
-import random
+
 
 class DynamicInputPage(tk.Frame):
     def __init__(self, parent, controller):
