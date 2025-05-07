@@ -1,6 +1,9 @@
 import re
 from SWC.models import SWC, Unit, Signal, Direction
 
+#from models import SWC, Unit, Signal, Direction
+
+
 def parse_swc_file(filepath):
     with open(filepath, "r", encoding="utf-8") as file:
         lines = file.readlines()
@@ -168,3 +171,6 @@ def parse_swc_file(filepath):
                 current_signal = None
 
     return swc
+filepath= "/home/saijaz/Desktop/GAMA/GAMA/SWC/test.txt"
+swc = parse_swc_file(filepath)
+print (swc)

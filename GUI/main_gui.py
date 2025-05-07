@@ -31,7 +31,7 @@ class AppController:
             self.frames[page_name] = frame  # Store by name
             frame.grid(row=0, column=0, sticky="nsew")
 
-        self.show_frame("XmlData")  # Use string instead of class reference
+        self.show_frame("IntroPage")  # Use string instead of class reference
 
     def show_frame(self, page_name):
         """Switch to the given frame using its class name as a string."""
