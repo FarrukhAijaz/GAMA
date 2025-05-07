@@ -1,0 +1,165 @@
+Package Name: SWC_LCA_HLC_Lat_ASIL_B
+
+Units:
+  - SwcLcaHlcLatUCrc
+      ID      : 73123
+      Author  : ŞÃ¼krÃ¼ Yaren GELBAL
+      Version : 1.0
+  - SwcLcaHlcLatULec
+      ID      : 66573
+      Author  : ŞÃ¼krÃ¼ Yaren GELBAL
+      Version : 1.0
+  - SwcLcaHlcLatUClc
+      ID      : 66572
+      Author  : ŞÃ¼krÃ¼ Yaren GELBAL
+      Version : 1.0
+  - SwcLcaHlcLatUVsr
+      ID      : 73134
+      Author  : ŞÃ¼krÃ¼ Yaren GELBAL
+      Version : 1.0
+
+Connectors:
+  Connector ID: {249CF138-1339-44d5-80AA-BE3F278395BD}
+    Start_Component_ID : 73134
+    End_Component_ID   : 66572
+    Direction       : Source -> Destination
+    Is Outer Signal : False
+    Is Input        : False
+    Is Output       : False
+    Top/Mid Label   : L_V_X
+    Signals:
+      - Lvx (Raw: L_V_X, Direction: Internal)
+         Attributes:
+           * value: double
+  Connector ID: {2FC12862-DBD6-470e-939C-DF5FC24E4FC2}
+    Start_Component_ID : 66571
+    End_Component_ID   : 66572
+    Direction       : Source -> Destination
+    Is Outer Signal : True
+    Is Input        : True
+    Is Output       : False
+    Top/Mid Label   : YawError
+    Signals:
+      - Yawerror (Raw: YawError, Direction: Input)
+         Attributes:
+           * data_type: double
+  Connector ID: {42C49793-943D-463c-A275-10F8F9FC74FE}
+    Start_Component_ID : 66571
+    End_Component_ID   : 73134
+    Direction       : Source -> Destination
+    Is Outer Signal : True
+    Is Input        : True
+    Is Output       : False
+    Top/Mid Label   : VDA_FrontAxleSpeed
+  Connector ID: {58489E42-F9AC-4238-819C-6523A06C715A}
+    Start_Component_ID : 66573
+    End_Component_ID   : 66572
+    Direction       : Source -> Destination
+    Is Outer Signal : False
+    Is Input        : False
+    Is Output       : False
+    Top/Mid Label   : E_Y
+    Signals:
+      - Ey (Raw: E_Y, Direction: Internal)
+         Attributes:
+           * value: double
+  Connector ID: {6147828F-E1C0-4918-A4EB-44E1D224B94C}
+    Start_Component_ID : 66571
+    End_Component_ID   : 73123
+    Direction       : Source -> Destination
+    Is Outer Signal : True
+    Is Input        : True
+    Is Output       : False
+    Top/Mid Label   : REF_Trajectory
+    Signals:
+      - Reftrajectory (Raw: REF_Trajectory, Direction: Input)
+         Attributes:
+           * C1: double
+           * C5: double
+           * C3: double
+           * C0: double
+           * C4: double
+           * C2: double
+  Connector ID: {62B56401-E608-4bb4-84D3-BE64A502C28B}
+    Start_Component_ID : 66572
+    End_Component_ID   : 66571
+    Direction       : Source -> Destination
+    Is Outer Signal : True
+    Is Input        : False
+    Is Output       : True
+    Top/Mid Label   : REF_Curvature
+    Signals:
+      - Refcurvature (Raw: REF_Curvature, Direction: Output)
+         Attributes:
+           * data_type: double
+  Connector ID: {A90259C9-3E94-46e5-BACE-8C280FEF7F98}
+    Start_Component_ID : 66571
+    End_Component_ID   : 66573
+    Direction       : Source -> Destination
+    Is Outer Signal : True
+    Is Input        : True
+    Is Output       : False
+    Top/Mid Label   : REF_Trajectory
+    Signals:
+      - Reftrajectory (Raw: REF_Trajectory, Direction: Input)
+         Attributes:
+           * C1: double
+           * C5: double
+           * C3: double
+           * C0: double
+           * C4: double
+           * C2: double
+  Connector ID: {CCDAE34C-58BF-4b04-A5E3-FCCA9F786E12}
+    Start_Component_ID : 73134
+    End_Component_ID   : 66573
+    Direction       : Source -> Destination
+    Is Outer Signal : False
+    Is Input        : False
+    Is Output       : False
+    Top/Mid Label   : L_V_X
+    Signals:
+      - Lvx (Raw: L_V_X, Direction: Internal)
+         Attributes:
+           * value: double
+  Connector ID: {F3B97C27-5BE6-4e24-82CD-2E1DB16C42A9}
+    Start_Component_ID : 73123
+    End_Component_ID   : 66572
+    Direction       : Source -> Destination
+    Is Outer Signal : False
+    Is Input        : False
+    Is Output       : False
+    Top/Mid Label   : K_REF
+    Signals:
+      - Kref (Raw: K_REF, Direction: Internal)
+         Attributes:
+           * value: double
+
+Outer Signals:
+  - Yawerror (Raw: YawError, Direction: Input)
+     Attributes:
+       * data_type: double
+  - Reftrajectory (Raw: REF_Trajectory, Direction: Input)
+     Attributes:
+       * C1: double
+       * C5: double
+       * C3: double
+       * C0: double
+       * C4: double
+       * C2: double
+  - Refcurvature (Raw: REF_Curvature, Direction: Output)
+     Attributes:
+       * data_type: double
+
+Inner Signals:
+  - Lvx (Raw: L_V_X, Direction: Internal)
+     Attributes:
+       * value: double
+  - Ey (Raw: E_Y, Direction: Internal)
+     Attributes:
+       * value: double
+  - Lvx (Raw: L_V_X, Direction: Internal)
+     Attributes:
+       * value: double
+  - Kref (Raw: K_REF, Direction: Internal)
+     Attributes:
+       * value: double

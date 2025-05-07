@@ -174,9 +174,9 @@ class IntroPage(Frame):
 
                 # Proceed to the respective page
                 if selected_option == 1:
-                    self.controller.show_frame("SWCSetupPage")
+                    self.controller.show_frame("XmlPreview")
                 elif selected_option == 2:
-                    self.controller.show_frame("DynamicInputPage")
+                    self.controller.show_frame("SWCSetupPage")
 
             except ValueError as e:
                 messagebox.showerror("Input Error", str(e))  # Show error pop-up

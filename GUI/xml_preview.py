@@ -6,7 +6,7 @@ from GUI.helper import create_rounded_rectangle
 
 from SWC.parser import parse_swc_file
 
-class XmlData(Frame):
+class XmlPreview(Frame):
     def __init__(self, parent, controller):
         super().__init__(parent)
         self.controller = controller
@@ -36,23 +36,45 @@ class XmlData(Frame):
             label_text = "for Software Components, feel free to use it and share any comments!"
             label_font = ("Times New Roman", 10, "italic")
             self.canvas.create_text(200, 75, text=label_text, font=label_font, fill="#0036FF")
-    
-            label_text = "Below you can find the data extracted from the XMl"
-            label_font = ("Times New Roman", 12, "bold italic")
-            self.canvas.create_text(185, 100, text=label_text, font=label_font, fill="#17202A")
 
-            label_text = "to be used in Simulink Creation:"
-            label_font = ("Times New Roman", 12, "bold italic")
-            self.canvas.create_text(120, 115, text=label_text, font=label_font, fill="#17202A")
-        InitaliseFrame()
-        filepath = "/home/saijaz/Desktop/GAMA/GAMA/SWC/test.txt"
-        out = parse_swc_file(filepath)
-        swc = str(out)
-        
+        def GIF():
+            self.gif_frames = []
+            gif_path = "/home/saijaz/Desktop/GAMA/GAMA/assets/images/final.gif"
+            gif = Image.open(gif_path)
+
+            try:
+                while True:
+                    frame = ImageTk.PhotoImage(gif.copy())
+                    self.gif_frames.append(frame)
+                    gif.seek(len(self.gif_frames))
+            except EOFError:
+                pass
+
+            self.gif_index = 0
+            self.gif_image = self.canvas.create_image(0, 150, image=self.gif_frames[0], anchor="nw")
+
+            def animate():
+                if hasattr(self, "gif_running") and not self.gif_running:
+                    return
+                self.gif_index = (self.gif_index + 1) % len(self.gif_frames)
+                self.canvas.itemconfig(self.gif_image, image=self.gif_frames[self.gif_index])
+                self.after(100, animate)
+
+            # Flag to control animation
+            self.gif_running = True
+            animate()
+
+            def stop_animation():
+                self.gif_running = False
+                self.canvas.delete(self.gif_image)
+                self.gif_frames.clear()
+
+            self.after(4500, stop_animation)
+        self.var = tk.IntVar(value=0)
+
         def navigate_next(event=None):
-            messagebox.showinfo("Success", "Simulink Model generation Completed")
-            self.root.quit()
-
+            # Proceed to the respective page
+            self.controller.show_frame("XmlData")
 
         # Hover effects for the 'Next' button
         def on_hover(event):
@@ -64,7 +86,7 @@ class XmlData(Frame):
         # Next button definition
         def NextButton():
             self.start_button = create_rounded_rectangle(self.canvas, 300, 550, 380, 580, radius=15, fill="#F0B27A", outline="", width=2)
-            self.start_button_text = self.canvas.create_text(335, 565, text="Generate", font=("Times New Roman", 14, "bold italic"), fill="#17202A")
+            self.start_button_text = self.canvas.create_text(335, 565, text="Next", font=("Times New Roman", 14, "bold italic"), fill="#17202A")
 
             self.canvas.tag_bind(self.start_button, "<Button-1>", navigate_next)
             self.canvas.tag_bind(self.start_button_text, "<Button-1>", navigate_next)
@@ -72,18 +94,26 @@ class XmlData(Frame):
             self.canvas.tag_bind(self.start_button_text, "<Enter>", on_hover)
             self.canvas.tag_bind(self.start_button, "<Leave>", on_leave)
             self.canvas.tag_bind(self.start_button_text, "<Leave>", on_leave)
-        def show_parsed_output(swc):
+        
+        # Function to display and remove text sequentially
+        def Text_Animation(self):
+        
+            def show_text_and_remove(text, position, delay_show, delay_remove):
+                label_id = self.canvas.create_text(position[0], position[1], text=text, font=("Times New Roman", 12, "bold italic"), fill="#17202A")
+                
+                # After delay_show (time in ms), make the text visible
+                self.after(delay_show, lambda: self.canvas.itemconfig(label_id, state="normal"))
+                
+                # After delay_remove (time in ms), remove the text
+                self.after(delay_remove, lambda: self.canvas.delete(label_id))
 
-            # Split the output into lines
-            lines = swc.split('\n')
-
-            # Display each line one by one
-            def display_line(i):
-                if i < 28:
-                    self.canvas.create_text(20, 150 + i*15, text=lines[i], font=("Times New Roman", 9), anchor="nw")
-                    self.after(500, display_line, i+1)  # Display next line after 1000ms
-
-            display_line(0)  # Start displaying the lines
-        self.after(1000, show_parsed_output(swc))
-
+                return label_id
+            
+            # Show and remove text in sequence
+            show_text_and_remove("Parsing the XML ....", (185, 450), 0, 1000)
+            self.after(1000, lambda: show_text_and_remove("Extracting the Software Component Information ....", (185, 450), 0, 1500))
+            self.after(2500, lambda: show_text_and_remove("Finalizing ....", (185, 450), 0, 2000))
+        InitaliseFrame()
+        GIF()
         NextButton()
+        Text_Animation(self)
