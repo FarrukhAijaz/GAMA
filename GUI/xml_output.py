@@ -5,7 +5,7 @@ from GUI.helper import blur_image
 from GUI.helper import create_rounded_rectangle
 
 
-class IntroPage(Frame):
+class XmlData(Frame):
     def __init__(self, parent, controller):
         super().__init__(parent)
         self.controller = controller
@@ -36,9 +36,13 @@ class IntroPage(Frame):
             label_font = ("Times New Roman", 10, "italic")
             self.canvas.create_text(200, 75, text=label_text, font=label_font, fill="#0036FF")
 
-            label_text = "Please Select one of the following:"
+            label_text = "Below you can find the data extracted from the XMl"
             label_font = ("Times New Roman", 12, "bold italic")
-            self.canvas.create_text(125, 125, text=label_text, font=label_font, fill="#17202A")
+            self.canvas.create_text(185, 100, text=label_text, font=label_font, fill="#17202A")
+
+            label_text = "to be used in Simulink Creation:"
+            label_font = ("Times New Roman", 12, "bold italic")
+            self.canvas.create_text(120, 115, text=label_text, font=label_font, fill="#17202A")
 
         self.var = tk.IntVar(value=0)
         
