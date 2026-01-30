@@ -1,10 +1,10 @@
 import tkinter as tk
 from tkinter import Frame, Canvas, filedialog, messagebox
 from PIL import Image, ImageTk
-from GUI.swc_setup import SWCSetupPage
-from GUI.swc_setup import DynamicInputPage
-from GUI.helper import blur_image
-from GUI.helper import create_rounded_rectangle
+from swc_setup import SWCSetupPage
+from swc_setup import DynamicInputPage
+from helper import blur_image
+from helper import create_rounded_rectangle
 
 
 class IntroPage(Frame):
@@ -14,7 +14,7 @@ class IntroPage(Frame):
         self.configure(width=800, height=600)
         def InitaliseFrame():
             self.bg_image = Image.open("/home/saijaz/Desktop/GAMA/GAMA/assets/images/bg.png")
-            self.bg_image = self.bg_image.resize((800, 600), Image.ANTIALIAS)
+            self.bg_image = self.bg_image.resize((800, 600), Image.Resampling.LANCZOS)
             self.bg_photo = ImageTk.PhotoImage(blur_image(self.bg_image, 1))
 
             self.canvas = Canvas(self, width=800, height=600, bg="white", bd=0, highlightthickness=0)

@@ -1,9 +1,9 @@
 import tkinter as tk
-from GUI.intro import IntroPage
-from GUI.swc_setup import SWCSetupPage
-from GUI.dynamic_input import DynamicInputPage
-from GUI.config_swc import ConfigPage
-from GUI.confirmation import ConfirmationPage
+from intro import IntroPage
+from swc_setup import SWCSetupPage
+from dynamic_input import DynamicInputPage
+from config_swc import ConfigPage
+from confirmation import ConfirmationPage
 
 class AppController:
     def __init__(self, root):

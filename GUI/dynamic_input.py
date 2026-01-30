@@ -1,6 +1,6 @@
 import tkinter as tk
 from tkinter import ttk
-from GUI.config_swc import ConfigPage
+from config_swc import ConfigPage
 
 
 class DynamicInputPage(tk.Frame):
